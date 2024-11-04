@@ -36,14 +36,14 @@ INNER JOIN countries c
 GROUP BY c.continent
 ORDER BY oldest_business ASC
 ```
-|continent|country_count|
+|oldest_business|continent|
 |------|-----------|
-|Africa|3|
-|Asia|7|
-|Europe|2|
-|North America|5|
-|Oceania|10|
-|South America|3|	
+|578|Asia|
+|803|Europe|
+|1534|North America|
+|1565|South America|
+|1772|Africa|
+|1809|Oceania|
 
 
 
@@ -65,3 +65,12 @@ LEFT JOIN allbusiness ab
 WHERE ab.business IS NULL
 GROUP BY c.continent
 ```
+
+|continent|country_count|
+|------|-----------|
+|Africa|3|
+|Asia|7|
+|Europe|2|
+|North America|5|
+|Oceania|10|
+|South America|3|	
