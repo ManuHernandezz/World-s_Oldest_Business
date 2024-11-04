@@ -26,7 +26,7 @@ Having useful information in different files is a common problem. While it's bet
 |`category_code`|Code for the business category (varchar)|
 |`category`|Description of the business category (varchar)|
 
-## What is the oldest business on each continent?
+## 1) What is the oldest business on each continent?
 
 ```sql
 SELECT MIN(b.year_founded) AS oldest_business, c.continent
@@ -47,7 +47,7 @@ ORDER BY oldest_business ASC
 
 
 
-## How many countries per continent lack data on the oldest businesses </br>  Does including the `new_businesses` data change this?
+## 2) How many countries per continent lack data on the oldest businesses </br>  Does including the `new_businesses` data change this?
 
 ```sql
 WITH allbusiness AS (
@@ -74,3 +74,16 @@ GROUP BY c.continent
 |North America|5|
 |Oceania|10|
 |South America|3|	
+
+
+## 3) Which business categories are best suited to last over the course of centuries?
+```sql
+SELECT c.continent, cat.category, MIN(b.year_founded) AS year_founded
+FROM businesses b
+INNER JOIN categories cat 
+	ON b.category_code = cat.category_code
+INNER JOIN countries c 
+	ON b.country_code = c.country_code
+GROUP BY c.continent, cat.category
+ORDER BY c.continent, cat.category;
+```
